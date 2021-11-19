@@ -1,38 +1,103 @@
-.App {
-  text-align: center;
+.calendar-dates {
+	display: grid;
+	grid-template-columns: 0.3fr repeat(7, 1fr);
+	text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.calendar-dates .timeline-box,
+.timeline-column__header {
+	position: relative;
+	font-size: 15px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background: #cccccc;
+	color: #333333;
+	padding: 10px;
+	margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.timeline-column .timeline-column__header {
+	border-bottom: 1px solid #eeeeee;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.timeline-column:not(:last-child) .timeline-column__header {
+	border-right: 1px solid #eeeeee;
 }
 
-.App-link {
-  color: #61dafb;
+.calendar-dates .timeline-box:not(:nth-of-type(odd)) {
+	background-color: #dddddd;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.timeline-column:not(:last-of-type) .timeline-box {
+	border-right: 1px solid #ebf2ff;
+}
+
+.timeline-box button {
+	margin-top: 5px;
+}
+
+.event-active {
+	position: absolute;
+	z-index: 2;
+	background: #6ebe4a;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	box-shadow: 0px 7px 10px 0px rgb(0 0 0 / 19%);
+	resize: vertical;
+	overflow: auto;
+	min-height: 50px;
+}
+
+.event-active span {
+	display: block;
+	margin-top: -5px;
+}
+
+.h-15 {
+	height: 50px;
+}
+
+.h-30 {
+	height: 100px;
+}
+
+.h-45 {
+	height: 150px;
+}
+
+.h-60 {
+	height: 200px;
+}
+
+.dragging {
+	background: #5c9144;
+}
+
+.edit-event,
+.remove-event {
+	cursor: pointer;
+}
+
+.duration-controls {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	display: none !important;
+}
+
+.duration-controls svg {
+	cursor: pointer;
+	border-radius: 50%;
+	box-shadow: 0px 7px 10px 0px rgb(0 0 0 / 19%);
+	background: #6ebe4a;
+	padding: 3px;
+	box-sizing: border-box;
+	font-size: 1rem;
 }
