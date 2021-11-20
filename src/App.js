@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
 
 import Event from "./components/EventHandler/Event";
 
 function App() {
+	const [columnCounter, setColumnCounter] = useState(24);
 	const [hours, sethours] = useState([]);
 	const [week, setWeek] = useState([]);
 	const [monthYear, setmonthYear] = useState([]);
-	const [weekCounter, setWeekCounter] = useState(0);
+	const [weekCounter, setWeekCounter] = useState(-1);
 	const [eventList, setEventList] = useState([
 		{
 			id: "15-Monday-00-00-0",
 			eventName: "testing event",
-			eventDuration: 15,
+			eventDuration: 1,
 		},
 		{
 			id: "16-Tuesday-00-00-0",
 			eventName: "testing event 2",
-			eventDuration: 30,
+			eventDuration: 3,
 		},
 	]);
+	const timelineColumnRef = useRef(null);
 
 	// Create Timestamp
 	useEffect(() => {
@@ -32,6 +34,18 @@ function App() {
 				sethours((prevState) => [...prevState, `${h}:${minutes[j]}`]);
 			}
 		}
+
+		// Columns Loader
+		window.addEventListener("scroll", () => {
+			let containerHeight = timelineColumnRef.current.offsetHeight;
+
+			if (
+				window.innerHeight + window.scrollY >= containerHeight &&
+				columnCounter !== 96
+			) {
+				setColumnCounter((prev) => prev + 24);
+			}
+		});
 	}, []);
 
 	// Set Week
@@ -66,8 +80,6 @@ function App() {
 
 		setWeek([]);
 		weekHandler();
-
-		console.log(1);
 	}, [weekCounter]);
 
 	// Next Week
@@ -99,9 +111,9 @@ function App() {
 			</div>
 
 			<div className="calendar-dates">
-				<div className="timeline-column">
+				<div className="timeline-column" ref={timelineColumnRef}>
 					<p className="timeline-column__header">Time</p>
-					{hours.slice(0, 4).map((d, i) => (
+					{hours.slice(0, columnCounter).map((d, i) => (
 						<div key={i} className="timeline-column">
 							<p className="timeline-column__header">{d}</p>
 						</div>
@@ -111,6 +123,7 @@ function App() {
 					<div key={i} className="timeline-column">
 						<p className="timeline-column__header">{d}</p>
 						<Event
+							columnCounter={columnCounter}
 							eventList={eventList}
 							setEventList={setEventList}
 							hours={hours}

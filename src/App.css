@@ -48,9 +48,9 @@
 	bottom: 0;
 	right: 0;
 	box-shadow: 0px 7px 10px 0px rgb(0 0 0 / 19%);
+	min-height: 50px;
 	resize: vertical;
 	overflow: auto;
-	min-height: 50px;
 }
 
 .event-active span {
@@ -58,19 +58,35 @@
 	margin-top: -5px;
 }
 
-.h-15 {
+.resize-mask {
+	content: "";
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: rgb(0, 162, 255);
+	resize: vertical;
+	overflow: auto;
+	opacity: 0.5;
+	display: none;
+}
+
+.h-1 {
 	height: 50px;
 }
 
-.h-30 {
+.h-2 {
 	height: 100px;
 }
 
-.h-45 {
+.h-3 {
 	height: 150px;
 }
 
-.h-60 {
+.h-4 {
 	height: 200px;
 }
 

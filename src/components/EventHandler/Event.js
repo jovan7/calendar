@@ -3,12 +3,12 @@ import React, { useRef } from "react";
 // Components
 import EventBox from "./EventBox";
 
-const Event = ({ eventList, setEventList, hours, day }) => {
+const Event = ({ columnCounter, eventList, setEventList, hours, day }) => {
 	const timeStampRef = useRef(null);
 
 	return (
 		<>
-			{hours.slice(0, 4).map((t, i) => (
+			{hours.slice(0, columnCounter).map((t, i) => (
 				<div
 					ref={timeStampRef}
 					key={i}

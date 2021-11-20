@@ -20,7 +20,7 @@ const EventBox = ({ eventList, setEventList, id }) => {
 			{
 				id: id,
 				eventName: form.eventName.value,
-				eventDuration: form.eventDuration.value || 15,
+				eventDuration: 1,
 			},
 		]);
 		handleClose();
@@ -78,7 +78,10 @@ const EventBox = ({ eventList, setEventList, id }) => {
 				centered
 				className="deletePopUp-modal"
 			>
-				<Modal.Body className="text-center">
+				<Modal.Header closeButton>
+					<Modal.Title>Add New Event</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
 					<Form onSubmit={saveEvent}>
 						<Form.Group className="mb-3" controlId="formEventName">
 							<Form.Label>
@@ -92,9 +95,9 @@ const EventBox = ({ eventList, setEventList, id }) => {
 								required
 							/>
 						</Form.Group>
-						<Form.Group className="mb-3">
+						{/* <Form.Group className="mb-3">
 							<Form.Label>
-								Duration (if not specified will be set to 15min){" "}
+								Duration (if not specified will be set to 15min)
 							</Form.Label>
 							<Form.Control
 								name="eventDuration"
@@ -103,7 +106,7 @@ const EventBox = ({ eventList, setEventList, id }) => {
 								max="60"
 								step="15"
 							/>
-						</Form.Group>
+						</Form.Group> */}
 						<Form.Group className="d-flex justify-content-around">
 							<Button
 								type="submit"
