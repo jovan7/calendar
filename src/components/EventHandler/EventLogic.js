@@ -25,8 +25,9 @@ const EventLogic = ({ eventList, setEventList, eventAdded, id }) => {
 		});
 
 		resize_ob.observe(eventActiveRef.current);
-	}, []);
+	});
 
+	// Event Duration Save
 	const applyEventDurationHandler = (e) => {
 		setEventList([...eventList]);
 		e.target.removeAttribute("style");

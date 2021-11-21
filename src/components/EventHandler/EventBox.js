@@ -4,12 +4,11 @@ import { Modal, Button, Form } from "react-bootstrap";
 // Components
 import EventLogic from "./EventLogic";
 
-const EventBox = ({ eventList, setEventList, id }) => {
+const EventBox = ({ savenEvent, eventList, setEventList, id }) => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	let eventAdded = eventList.find((e) => e.id === id);
-
 	// Add Events
 	const saveEvent = (e) => {
 		e.preventDefault();

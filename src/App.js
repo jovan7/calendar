@@ -9,18 +9,7 @@ function App() {
 	const [week, setWeek] = useState([]);
 	const [monthYear, setmonthYear] = useState([]);
 	const [weekCounter, setWeekCounter] = useState(-1);
-	const [eventList, setEventList] = useState([
-		{
-			id: "15-Monday-00-00-0",
-			eventName: "testing event",
-			eventDuration: 1,
-		},
-		{
-			id: "16-Tuesday-00-00-0",
-			eventName: "testing event 2",
-			eventDuration: 3,
-		},
-	]);
+	const [eventList, setEventList] = useState([]);
 	const timelineColumnRef = useRef(null);
 
 	// Create Timestamp
@@ -46,6 +35,7 @@ function App() {
 				setColumnCounter((prev) => prev + 24);
 			}
 		});
+		console.log(3);
 	}, []);
 
 	// Set Week
