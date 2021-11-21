@@ -35,7 +35,6 @@ function App() {
 				setColumnCounter((prev) => prev + 24);
 			}
 		});
-		console.log(3);
 	}, []);
 
 	// Set Week
